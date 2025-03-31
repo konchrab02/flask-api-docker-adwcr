@@ -19,4 +19,4 @@ COPY . .
 EXPOSE 5000
 
 # Uruchom aplikację
-CMD ["python", "app.py"]
+CMD ["python", "adwcr_app.py"]
