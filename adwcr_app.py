@@ -4,36 +4,13 @@ app = Flask(__name__)
 
 @app.route('/api/v1.0/predict', methods=['GET'])
 def prediction_model():
-    a = request.args.get("a", "")
-    b = request.args.get("b", "")
+    a = request.args.get("a", default = 0.0, type = float)
+    b = request.args.get("b", default = 0.0, type = float)
     
-    if a and b:
-        a = float(a)
-        b = float(b)
-        if a + b > 5.8:
-            prediction = 1
-        else:
-            prediction = 0
-    elif a and not b:
-        a = float(a)
-        if a > 5.8:
-            prediction = 1
-            b = 0
-        else:
-            prediction = 0
-            b = 0
-    elif not a and b:
-        b = float(b)
-        if b > 5.8:
-            prediction = 1
-            a = 0
-        else:
-            prediction = 0
-            a = 0
+    if a + b > 5.8:
+        prediction = 1
     else:
         prediction = 0
-        a = 0
-        b = 0
 
     resp = {
         'prediction': prediction,
