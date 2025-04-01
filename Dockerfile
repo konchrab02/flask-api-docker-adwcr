@@ -8,12 +8,9 @@ ENV PYTHONUNBUFFERED=1
 # Ustaw katalog roboczy w kontenerze
 WORKDIR /app
 
-# Skopiuj plik requirements.txt i zainstaluj zależności
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
-
-# Skopiuj resztę plików aplikacji do katalogu roboczego
+# Skopiuj pliki aplikacji do katalogu roboczego
 COPY . .
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Udostępnij port, na którym aplikacja będzie działać
 EXPOSE 5000
